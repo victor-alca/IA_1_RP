@@ -30,7 +30,7 @@ if __name__ == "__main__":
     print(f"\nData distribution - Positive: {sum(y)}, Negative: {len(y) - sum(y)}")
     print(f"Percentage positive: {sum(y)/len(y)*100:.1f}%")
     
-    # --- New: Vectorize and classify multiple texts ---
+    # Vectorize and classify multiple texts
     vectorizer = TextVectorizer(VOCAB_PATH, WORD_VECTORS_PATH)
     new_texts = [
         "produto excelente recomendo muito bom",
@@ -39,8 +39,6 @@ if __name__ == "__main__":
     ]
     
     print("\n--- Testing new texts ---")
-    
-    # First, let's check some vocabulary words
     print("Sample vocabulary words:", list(vectorizer.word_to_vec.keys())[:10])
     
     for i, new_text in enumerate(new_texts, 1):
