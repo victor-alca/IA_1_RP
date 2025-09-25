@@ -1,4 +1,5 @@
 import numpy as np
+import unicodedata
 
 class TextVectorizer:
     """
@@ -25,13 +26,23 @@ class TextVectorizer:
         # Create a dictionary mapping words to their vectors
         return {word: vec for word, vec in zip(self.vocab, self.word_vectors)}
 
+    def _remove_accents(self, text):
+        """
+        Remove accents from text using unicode normalization.
+        """
+        # Normalize to NFD (decomposed form) and filter out combining characters
+        normalized = unicodedata.normalize('NFD', text)
+        # Remove combining characters (accents)
+        return ''.join(char for char in normalized if unicodedata.category(char) != 'Mn')
+
     def vectorize(self, text):
         """
         Convert a text (string) into a vector by averaging the vectors of the words it contains.
         Words not in the vocabulary are ignored. If no words are found, returns a zero vector.
         """
-        # Convert to uppercase to match vocabulary format
-        words = text.strip().upper().split()
+        # Remove accents first, then convert to uppercase to match vocabulary format
+        text_no_accents = self._remove_accents(text)
+        words = text_no_accents.strip().upper().split()
         vectors = [self.word_to_vec[w] for w in words if w in self.word_to_vec]
         if not vectors:
             return np.zeros(self.word_vectors.shape[1])
