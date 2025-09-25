@@ -1,2 +1,4 @@
 /src/__pycache__
 /venv
+/src/pkl/vectorizer.pkl
+/src/pkl/comment_model.pkl

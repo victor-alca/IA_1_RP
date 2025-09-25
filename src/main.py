@@ -44,11 +44,28 @@ if __name__ == "__main__":
         "preço justo e bom custo benefício",
         "ótimo produto com excelente qualidade",
         "serviço péssimo e atendimento horrível",
-        "recomendação incrível vale muito à pena"
+        "recomendação incrível vale muito à pena",
+        "comprei este item e estou satisfeito",
+        "o produto chegou quebrado e atrasado",
+        "loja muito organizada e funcionários simpáticos",
+        "não volto mais neste estabelecimento",
+        "qualidade superior ao esperado",
+        "preço alto para o que oferece",
+        "entrega rápida e embalagem perfeita",
+        "atendimento deixou a desejar",
+        "recomendo para todos os amigos",
+        "produto falso, não é original",
+        "experiência positiva em geral",
+        "serviço lento e ineficiente",
+        "bom custo benefício",
+        "não atende às expectativas",
+        "ótima variedade de produtos",
+        "embalagem danificada na entrega",
+        "funcionários muito educados",
+        "produto com defeito de fabricação"
     ]
     
     print("\n--- Testing new texts ---")
-    print("Sample vocabulary words:", list(vectorizer.word_to_vec.keys())[:10])
     
     for i, new_text in enumerate(new_texts, 1):
         text_vector = vectorizer.vectorize(new_text)
