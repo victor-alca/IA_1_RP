@@ -1,13 +1,18 @@
 
+import os
 from data_loader import DataLoader
 from model import MLPModel
 from text_vectorizer import TextVectorizer
 
+# Get the directory where this script is located
+script_dir = os.path.dirname(os.path.abspath(__file__))
+# Get the project root directory (parent of src)
+project_root = os.path.dirname(script_dir)
 
-FEATURES_PATH = '../data/WTEXpc.dat'
-LABELS_PATH = '../data/CLtx.dat'
-VOCAB_PATH = '../data/PALAVRASpc.txt'
-WORD_VECTORS_PATH = '../data/WWRDpc.dat'
+FEATURES_PATH = os.path.join(project_root, 'data', 'WTEXpc.dat')
+LABELS_PATH = os.path.join(project_root, 'data', 'CLtx.dat')
+VOCAB_PATH = os.path.join(project_root, 'data', 'PALAVRASpc.txt')
+WORD_VECTORS_PATH = os.path.join(project_root, 'data', 'WWRDpc.dat')
 
 if __name__ == "__main__":
     # Load data
