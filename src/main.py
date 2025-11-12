@@ -1,6 +1,6 @@
 
 from data_loader import DataLoader
-from model import MLPModel
+from model import ClassificationModel
 from text_vectorizer import TextVectorizer
 
 
@@ -14,8 +14,15 @@ if __name__ == "__main__":
     loader = DataLoader(FEATURES_PATH, LABELS_PATH)
     X, y = loader.load_data()
 
-    # Initialize model
-    mlp = MLPModel()
+    # You can now choose which model to use by passing model_type parameter
+    # Options: 'mlp', 'naive_bayes', 'random_forest', 'svm'
+    
+    print("="*70)
+    print("EXAMPLE: Training with MLP (Multi-layer Perceptron)")
+    print("="*70)
+    
+    # Initialize model with MLP (default)
+    mlp = ClassificationModel(model_type='mlp')
 
     # Split the data into training and test sets
     X_train, X_test, y_train, y_test = mlp.split_data(X, y)

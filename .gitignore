@@ -2,3 +2,7 @@
 /venv
 /src/pkl/vectorizer.pkl
 /src/pkl/comment_model.pkl
+src/pkl/comment_model_mlp.pkl
+src/pkl/comment_model_naive_bayes.pkl
+src/pkl/comment_model_random_forest.pkl
+src/pkl/comment_model_svm.pkl

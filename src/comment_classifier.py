@@ -1,7 +1,7 @@
 import pickle
 import os
 from data_loader import DataLoader
-from model import MLPModel
+from model import ClassificationModel
 from text_vectorizer import TextVectorizer
 
 
@@ -9,11 +9,21 @@ class CommentClassifier:
     """
     Comment Classification Model Handler
     Handles model loading, training, and prediction operations
+    Supports multiple model types: 'mlp', 'naive_bayes', 'random_forest', 'svm'
     """
     
-    def __init__(self):
+    def __init__(self, model_type='mlp'):
+        """
+        Initialize the classifier
+        
+        Parameters:
+        -----------
+        model_type : str
+            Type of model to use. Options: 'mlp', 'naive_bayes', 'random_forest', 'svm'
+        """
         self.model = None
         self.vectorizer = None
+        self.model_type = model_type
         
         # Data file paths
         self.FEATURES_PATH = '../data/WTEXpc.dat'
@@ -24,8 +34,8 @@ class CommentClassifier:
         PKL_DIR = os.path.join(os.path.dirname(__file__), "pkl")
         os.makedirs(PKL_DIR, exist_ok=True)
         
-        # Model save paths
-        self.MODEL_PATH = './pkl/comment_model.pkl'
+        # Model save paths (specific to model type)
+        self.MODEL_PATH = f'./pkl/comment_model_{model_type}.pkl'
         self.VECTORIZER_PATH = './pkl/vectorizer.pkl'
     
     def load_or_train_model(self):
@@ -56,8 +66,8 @@ class CommentClassifier:
         loader = DataLoader(self.FEATURES_PATH, self.LABELS_PATH)
         X, y = loader.load_data()
         
-        # Initialize and train model
-        self.model = MLPModel()
+        # Initialize and train model with specified type
+        self.model = ClassificationModel(model_type=self.model_type)
         X_train, X_test, y_train, y_test = self.model.split_data(X, y)
         self.model.train(X_train, y_train)
         
