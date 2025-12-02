@@ -37,7 +37,6 @@ The comparative analysis demonstrated the superiority of the MLP model, which ac
 
 The application allows for interactive testing of the models.
 
-*(You can add a screenshot of your `classifier_app.py` application in action here)*
 ![GUI Screenshot](./data/img/gui.png)
 
 ---
